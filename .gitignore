@@ -4,3 +4,6 @@ MANIFEST
 dist/
 torsimany.egg-info/
 build/
+*.pyc
+torsimany/*.pyc
+torsimany_runner.py
