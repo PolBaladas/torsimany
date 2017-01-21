@@ -52,7 +52,7 @@ def justdoit(input_file, output_file):
 	markdown = markdown.replace('#######','######')
 	writeOut(markdown, output_file)
 
-def main():
+def torsimany():
 	if len(sys.argv)>1:
 		input_file = sys.argv[1]
 		output_file = input_file[:-4]+'markdown'
@@ -63,6 +63,3 @@ def main():
 	else:
 		print('\n'+"Sorry, you must specify an input file.")
 		print("	usage: python torsimany.py [JSON_FILE].json"+'\n')
-
-if __name__=='__main__':
-	main()
