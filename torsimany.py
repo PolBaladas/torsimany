@@ -2,6 +2,7 @@
 import sys, json
 
 markdown = ""
+tab = "    "
 
 def loadJSON(file):
 	with open(file, 'r') as f:
@@ -31,12 +32,12 @@ def parseList(l, depth):
 			parseDict(value, depth)
 
 def addHeader(value, depth):
-	chain = '#'*depth+' value '+('#'*depth+'\n')
+	chain = tab*(depth)+'#'*depth+' value '+('#'*depth+'\n')
 	global markdown
 	markdown+=chain.replace('value', value.title())
 
 def addValue(key, value, depth):
-	chain ='* '+str(key)+": "+str(value)+"\n"
+	chain =tab*(depth-1)+'* '+str(key)+": "+str(value)+"\n"
 	global markdown
 	markdown+=chain
 
