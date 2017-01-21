@@ -17,6 +17,9 @@ pip install torsimany
 wget https://raw.githubusercontent.com/PolBaladas/torsimany/master/torsimany.py
 ```
 
+#### Requirements ####
+Torsimany uses standard modules already included with your fresh python installation.
+
 ## Usage:
 ```shell
 python torsimany.py [JSON_FILE].json
@@ -24,15 +27,12 @@ python torsimany.py [JSON_FILE].json
 ### Output:
 An awesome `.markdown` file translated by torsimany from the given JSON input.
 
-##Useful Tools
+## Useful Tools
 Online JSON Schema visualizer: [JSON Editor online](http://www.jsoneditoronline.org/)
 
 Online Markdown editor/render: [dilinger.io](http://dillinger.io/)
 
-##Requirements##
-Torsimany uses standard modules already included with your fresh python installation.
-
-##Contribute
+## Contribute
 **Welcome ye Hacker!**
 All ideas are welcome, open/close issues, fork the repo and share your code with a Pull Request.
 
