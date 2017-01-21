@@ -1,2 +1,4 @@
 setup.cfg
 setup.py
+MANIFEST
+dist/
