@@ -2,3 +2,5 @@ setup.cfg
 setup.py
 MANIFEST
 dist/
+torsimany.egg-info/
+build/
