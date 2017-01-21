@@ -32,7 +32,7 @@ Online Markdown editor/render: [dilinger.io](http://dillinger.io/)
 ##Requirements##
 Torsimany uses standard modules already included with your fresh python installation.
 
-##Collaborate
+##Contribute
 **Welcome ye Hacker!**
 All ideas are welcome, open/close issues, fork the repo and share your code with a Pull Request.
 
