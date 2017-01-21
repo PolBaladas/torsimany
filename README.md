@@ -1,4 +1,4 @@
-# Torsimany
+# Torsimany: JSON to Markdown converter
 
 *Translate any JSON file to stylish, human-readable Markdown.*
 
