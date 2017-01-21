@@ -52,7 +52,7 @@ def justdoit(input_file, output_file):
 	markdown = markdown.replace('#######','######')
 	writeOut(markdown, output_file)
 
-def torsimany():
+def main():
 	if len(sys.argv)>1:
 		input_file = sys.argv[1]
 		output_file = input_file[:-4]+'markdown'
