@@ -1,9 +1,8 @@
 # Torsimany
-Torsimany: Any JSON to Markdown converter - Generate Markdown from format independent (:scream:) JSON
-
-![Torsimany](https://cloud.githubusercontent.com/assets/3987198/22163287/7b89c26e-df52-11e6-8769-4bccf4471e37.jpg)
 
 *Translate any JSON file to stylish, human-readable Markdown.*
+
+![Torsimany](https://cloud.githubusercontent.com/assets/3987198/22163287/7b89c26e-df52-11e6-8769-4bccf4471e37.jpg)
 
 ##Installation:
 **Installing torsimany can be done using pip**:
@@ -17,7 +16,6 @@ pip install torsimany
 ```shell
 wget https://raw.githubusercontent.com/PolBaladas/torsimany/master/torsimany.py
 ```
-
 
 ## Usage:
 ```shell
@@ -33,3 +31,12 @@ Online Markdown editor/render: [dilinger.io](http://dillinger.io/)
 
 ##Requirements##
 Torsimany uses standard modules already included with your fresh python installation.
+
+##Collaborate
+**Welcome ye Hacker!**
+All ideas are welcome, open/close issues, fork the repo and share your code with a Pull Request.
+
+You can clone this project to your machine:
+```shell
+git clone https://github.com/PolBaladas/torsimany
+```
