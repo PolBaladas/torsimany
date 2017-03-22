@@ -2,18 +2,18 @@
 import sys, json
 
 markdown = ""
-tab = "    "
+tab = "  "
 
 def loadJSON(file):
 	with open(file, 'r') as f:
 		data = f.read().decode('ascii','ignore')
 	return json.loads(data)
 
-def parseJSON(d, depth):
-	if isinstance(d, dict):
-		parseDict(d, depth)
-	if isinstance(d, list):
-		parseList(d, depth)
+def parseJSON(json_block, depth):
+	if isinstance(json_block, dict):
+		parseDict(json_block, depth)
+	if isinstance(json_block, list):
+		parseList(json_block, depth)
 		
 def parseDict(d, depth):
 	for k in d:
@@ -32,12 +32,12 @@ def parseList(l, depth):
 			parseDict(value, depth)
 
 def addHeader(value, depth):
-	chain = tab*(depth)+'#'*depth+' value '+('#'*depth+'\n')
+	chain = '* '*(bool(depth))+'#'*(depth+1)+' value '+('#'*(depth+1)+'\n')
 	global markdown
 	markdown+=chain.replace('value', value.title())
 
 def addValue(key, value, depth):
-	chain =tab*(depth-1)+'* '+str(key)+": "+str(value)+"\n"
+	chain=tab*(depth-1)+'* '+str(key)+": "+str(value)+"\n"
 	global markdown
 	markdown+=chain
 
@@ -46,8 +46,9 @@ def writeOut(markdown, output_file):
 	f.write(markdown)
 
 def justdoit(input_file, output_file):	
-	d = loadJSON(input_file)
-	parseJSON(d, 1)
+	json_data = loadJSON(input_file)
+	depth = 0
+	parseJSON(json_data, depth)
 	global markdown
 	markdown = markdown.replace('#######','######')
 	writeOut(markdown, output_file)
