@@ -2,7 +2,7 @@ from setuptools import setup
 setup(
   name = 'torsimany',
   packages = ['torsimany'],
-  version = '0.17',
+  version = '1.0',
   description = 'JSON to Markdown converter - Translate any JSON file to stylish, human-readable Markdown.',
   author = 'Pol Baladas',
   author_email = 'polbaladasluna@gmail.com',
