@@ -4,6 +4,8 @@
 
 ![Torsimany](https://cloud.githubusercontent.com/assets/3987198/22163287/7b89c26e-df52-11e6-8769-4bccf4471e37.jpg)
 
+   💡✏️️ ⬇️️
+
 ## Installation:
 **To install Torsimany using pip**:
 
