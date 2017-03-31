@@ -4,6 +4,8 @@ import json
 
 markdown = ""
 tab = "  "
+list_tag = '* '
+htag = '#'
 
 
 def loadJSON(file):
@@ -36,17 +38,23 @@ def parseList(l, depth):
         else:
             parseDict(value, depth)
 
-
-def addHeader(value, depth):
+def buildHeaderChain(depth):
     chain = '* ' * (bool(depth)) + '#' * (depth + 1) + \
         ' value ' + ('#' * (depth + 1) + '\n')
+    return chain
+
+def buildValueChain(key, value, depth):
+    chain = tab * (bool(depth - 1)) + '* ' + \
+        str(key) + ": " + str(value) + "\n"
+    return chain
+
+def addHeader(value, depth):
+    chain = buildHeaderChain(depth)
     global markdown
     markdown += chain.replace('value', value.title())
 
-
 def addValue(key, value, depth):
-    chain = tab * (bool(depth - 1)) + '* ' + \
-        str(key) + ": " + str(value) + "\n"
+    chain = buildValueChain(key, value, depth)
     global markdown
     markdown += chain
 
