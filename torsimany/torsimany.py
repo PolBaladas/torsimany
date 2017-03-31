@@ -4,7 +4,7 @@ import json
 
 markdown = ""
 tab = "  "
-list_tag = '* '
+list_tag = list_tag
 htag = '#'
 
 
@@ -39,12 +39,12 @@ def parseList(l, depth):
             parseDict(value, depth)
 
 def buildHeaderChain(depth):
-    chain = '* ' * (bool(depth)) + '#' * (depth + 1) + \
+    chain = list_tag * (bool(depth)) + '#' * (depth + 1) + \
         ' value ' + ('#' * (depth + 1) + '\n')
     return chain
 
 def buildValueChain(key, value, depth):
-    chain = tab * (bool(depth - 1)) + '* ' + \
+    chain = tab * (bool(depth - 1)) + list_tag + \
         str(key) + ": " + str(value) + "\n"
     return chain
 
