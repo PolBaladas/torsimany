@@ -39,8 +39,8 @@ def parseList(l, depth):
             parseDict(value, depth)
 
 def buildHeaderChain(depth):
-    chain = list_tag * (bool(depth)) + '#' * (depth + 1) + \
-        ' value ' + ('#' * (depth + 1) + '\n')
+    chain = list_tag * (bool(depth)) + htag * (depth + 1) + \
+        ' value ' + (htag * (depth + 1) + '\n')
     return chain
 
 def buildValueChain(key, value, depth):
