@@ -1,6 +1,9 @@
 # Torsimany: JSON to Markdown converter
 
-*Translate any JSON file to stylish, human-readable Markdown.*
+ *Translate any JSON file to stylish, human-readable Markdown.*
+ 
+ 
+ [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
 ![Torsimany](https://cloud.githubusercontent.com/assets/3987198/22163287/7b89c26e-df52-11e6-8769-4bccf4471e37.jpg)
 
