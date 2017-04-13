@@ -1,10 +1,11 @@
 #-*- coding: utf-8 -*-
-import sys
-import json
-
+import sys,json,requests,random
+# Set default encoding to utf-8 to avoid problems with the json reading
+reload(sys)
+sys.setdefaultencoding('utf-8')
 markdown = ""
 tab = "  "
-list_tag = list_tag
+list_tag = ""
 htag = '#'
 
 
@@ -58,29 +59,28 @@ def addValue(key, value, depth):
     global markdown
     markdown += chain
 
-
-def writeOut(markdown, output_file):
-    f = open(output_file, 'w+')
-    f.write(markdown)
-
-
-def justdoit(input_file, output_file):
-    json_data = loadJSON(input_file)
+def justdoit(json_data, output_file):
     depth = 0
     parseJSON(json_data, depth)
     global markdown
     markdown = markdown.replace('#######', '######')
-    writeOut(markdown, output_file)
-
+    with open(output_file, "w+") as f:
+        f.write(markdown)
+        print(output_file)
+        print(markdown)
 
 def main():
     if len(sys.argv) > 1:
-        input_file = sys.argv[1]
-        output_file = input_file[:-4] + 'markdown'
-        if input_file[-4:] == 'json':
-            justdoit(input_file, output_file)
+        input_file = str(sys.argv[1])
+        if input_file[:7] == "http://" or input_file[:8] == "https://":
+            output_file = "url_"+str(random.randint(0,1000))+".markdown" # Gives the output file a random name (ie. url_714.markdown)
+            json_data = requests.get(input_file).json()
+            justdoit(json_data, output_file)
+        elif input_file[-5:] == '.json':
+            output_file = input_file[:-4] + 'markdown'
+            justdoit(loadJSON(input_file), output_file)
         else:
-            print('Input must be a .json file')
+            print('Input must be a .json file or an URL of a .json file')
     else:
         print('\n' + "Sorry, you must specify an input file.")
         print("	usage: python torsimany.py [JSON_FILE].json" + '\n')
