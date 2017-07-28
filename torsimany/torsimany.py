@@ -4,7 +4,7 @@ import json
 
 markdown = ""
 tab = "  "
-list_tag = list_tag
+list_tag = '* '
 htag = '#'
 
 
