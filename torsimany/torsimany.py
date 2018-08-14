@@ -1,42 +1,17 @@
 #-*- coding: utf-8 -*-
+from __future__ import print_function
 import sys
 import json
+import codecs
 
-markdown = ""
 tab = "  "
 list_tag = '* '
 htag = '#'
 
-
 def loadJSON(file):
-    with open(file, 'r') as f:
+    with codecs.open(file, 'r', encoding="utf-8", errors="surrogateescape") as f:
         data = f.read().decode('ascii', 'ignore')
     return json.loads(data)
-
-
-def parseJSON(json_block, depth):
-    if isinstance(json_block, dict):
-        parseDict(json_block, depth)
-    if isinstance(json_block, list):
-        parseList(json_block, depth)
-
-
-def parseDict(d, depth):
-    for k in d:
-        if isinstance(d[k], (dict, list)):
-            addHeader(k, depth)
-            parseJSON(d[k], depth + 1)
-        else:
-            addValue(k, d[k], depth)
-
-
-def parseList(l, depth):
-    for value in l:
-        if not isinstance(value, (dict, list)):
-            index = l.index(value)
-            addValue(index, value, depth)
-        else:
-            parseDict(value, depth)
 
 def buildHeaderChain(depth):
     chain = list_tag * (bool(depth)) + htag * (depth + 1) + \
@@ -48,29 +23,52 @@ def buildValueChain(key, value, depth):
         str(key) + ": " + str(value) + "\n"
     return chain
 
-def addHeader(value, depth):
-    chain = buildHeaderChain(depth)
-    global markdown
-    markdown += chain.replace('value', value.title())
+class JsonToMarkdown(object):
+    def __init__(self):
+        self.markdown = ""             
+    
+    def parseJSON(self, json_block, depth):
+        if isinstance(json_block, dict):
+            self.parseDict(json_block, depth)
+        if isinstance(json_block, list):
+            self.parseList(json_block, depth)
 
-def addValue(key, value, depth):
-    chain = buildValueChain(key, value, depth)
-    global markdown
-    markdown += chain
+    def parseDict(self, d, depth):
+        for k in d:
+            if isinstance(d[k], (dict, list)):
+                self.addHeader(k, depth)
+                self.parseJSON(d[k], depth + 1)
+            else:
+                self.addValue(k, d[k], depth)
 
+    def parseList(self, l, depth):
+        for value in l:
+            if not isinstance(value, (dict, list)):
+                index = l.index(value)
+                self.addValue(index, value, depth)
+            else:
+                self.parseDict(value, depth)
 
-def writeOut(markdown, output_file):
-    f = open(output_file, 'w+')
-    f.write(markdown)
+    def addHeader(self, value, depth):
+        chain = buildHeaderChain(depth)
+        self.markdown += chain.replace('value', value.title())
+     
+    def addValue(self, key, value, depth):
+        chain = buildValueChain(key, value, depth)
+        self.markdown += chain
 
+    def writeOut(self, output_file):
+        f = codecs.open(output_file, 'w+', encoding="utf-8", errors="surrogateescape")
+        f.write(self.markdown)
 
-def justdoit(input_file, output_file):
-    json_data = loadJSON(input_file)
-    depth = 0
-    parseJSON(json_data, depth)
-    global markdown
-    markdown = markdown.replace('#######', '######')
-    writeOut(markdown, output_file)
+    @staticmethod
+    def justdoit(input_file, output_file):
+        json_data = loadJSON(input_file)
+        depth = 0
+        converter = JsonToMarkdown()
+        converter.parseJSON(json_data, depth)
+        converter.markdown = converter.markdown.replace('#######', '######')
+        converter.writeOut(output_file)
 
 
 def main():
@@ -78,7 +76,7 @@ def main():
         input_file = sys.argv[1]
         output_file = input_file[:-4] + 'markdown'
         if input_file[-4:] == 'json':
-            justdoit(input_file, output_file)
+            JsonToMarkdown.justdoit(input_file, output_file)
         else:
             print('Input must be a .json file')
     else:
