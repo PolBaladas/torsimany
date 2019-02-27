@@ -14,5 +14,5 @@ setup(
       'torsimany = torsimany.torsimany:main'
     ]
   },
-  classifiers = ['Programming Language :: Python :: 2.7'],
+  classifiers = ['Programming Language :: Python :: 3'],
 )
