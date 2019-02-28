@@ -10,7 +10,7 @@ htag = '#'
 
 def loadJSON(file):
     with open(file, 'r') as f:
-        data = f.read().decode('ascii', 'ignore')
+        data = f.read()
     return json.loads(data)
 
 
@@ -60,8 +60,8 @@ def addValue(key, value, depth):
 
 
 def writeOut(markdown, output_file):
-    f = open(output_file, 'w+')
-    f.write(markdown)
+    with open(output_file, 'w+') as f:
+        f.write(markdown)
 
 
 def justdoit(input_file, output_file):
