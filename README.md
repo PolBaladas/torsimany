@@ -16,10 +16,11 @@
 pip install torsimany
 ```
 
-**Downloading the code** from this repository and including `torsimany.py` in the working directory:
+**Downloading the code** from this repository:
 
 ```shell
-wget https://raw.githubusercontent.com/PolBaladas/torsimany/master/torsimany.py
+git clone https://github.com/PolBaladas/torsimany.git
+python setup.py install
 ```
 
 #### Requirements ####
@@ -27,7 +28,7 @@ Torsimany uses standard modules already included with your fresh python installa
 
 ## Usage:
 ```shell
-python torsimany.py [JSON_FILE].json
+torsimany [JSON_FILE].json
 ```
 ### Output:
 An awesome `.markdown` file translated by torsimany from the given JSON input.
